@@ -1,23 +1,19 @@
-
+import { useState } from 'react'
 import './App.css'
 import Container from 'react-bootstrap/Container'
 import TimeDisplay from './components/TimeDisplay'
+import Break from './components/Break'
+import Session from './components/Session'
 
-function App() {
+function App({breakTime, setBreakTime}) {
+
 
   return (
     <>
     <Container>
-    <label id="break-label" htmlFor="break-length">Break Time</label>
-    <button id="break-decrement">Break ↓</button>
-    <div id="break-length">5</div>
-    <button id="break-increment">Break ↑</button>
-
-    <label id="session-label" htmlFor="session-length">Session Time</label>
-    <button id="session-decrement">Session ↓</button>
-    <div id="session-length">25</div>
-    <button in="session-increment">Session ↑</button>
-    <TimeDisplay initialTime={1500}/>
+    <Break breakTime={breakTime} setBreakTime={setBreakTime} />
+      <Session sessionTime={1500} />
+    <TimeDisplay sessionTime={1500} breakTime={breakTime}/>
     </Container>
     </>
   )
