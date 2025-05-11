@@ -1,23 +1,24 @@
 
 import './App.css'
+import Container from 'react-bootstrap/Container'
+import TimeDisplay from './components/TimeDisplay'
 
 function App() {
 
   return (
     <>
-    <label id="break-label">Break Time</label>
-    <div id="break-length">5</div>
+    <Container>
+    <label id="break-label" htmlFor="break-length">Break Time</label>
     <button id="break-decrement">Break ↓</button>
+    <div id="break-length">5</div>
     <button id="break-increment">Break ↑</button>
-    <label id="session-label">Session Time</label>
-    <div id="session-length">25</div>
+
+    <label id="session-label" htmlFor="session-length">Session Time</label>
     <button id="session-decrement">Session ↓</button>
+    <div id="session-length">25</div>
     <button in="session-increment">Session ↑</button>
-    <label id="timer-label">Timer</label>
-    <div id="time-left">mm:ss</div>
-    <button id="pause">pause</button>
-    <button id="play">play</button>
-    <button id="reset">Reset</button>
+    <TimeDisplay initialTime={1500}/>
+    </Container>
     </>
   )
 }
