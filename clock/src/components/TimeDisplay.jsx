@@ -19,7 +19,7 @@ const TimeDisplay = ({breakTime, setBreakTime, sessionTime, setSessionTime}) => 
         });
     }, 1000);
     return () => clearInterval(interval);
- }, [isRunning, onBreak, sessionTime, breakTime, timeLeft]); 
+ }, [isRunning, onBreak, sessionTime, breakTime]); 
 
  const formatTime = () => {
     const minutes = String(Math.floor(timeLeft / 60)).padStart(2, '0');
