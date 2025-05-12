@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 
-const TimeDisplay = ({sessionTime}) => {
- const [timeLeft, setTimeLeft] = useState(sessionTime);
+const TimeDisplay = ({breakTime, setBreakTime, sessionTime, setSessionTime}) => {
+ const [timeLeft, setTimeLeft] = useState(1500);
  const [isRunning, setIsRunning] = useState(false);
  const [onBreak, setOnBreak] = useState(false);
- const [breakTime, setBreakTime] = useState(300);
-
 
  useEffect(() => {
     if (!isRunning) return;
@@ -13,7 +11,7 @@ const TimeDisplay = ({sessionTime}) => {
     const interval = setInterval(() => {
         setTimeLeft(prevTime => {
             if (prevTime > 1) {
-                return prevTime -1;
+                return prevTime -1; //decreases 1s every second
             }
             setIsRunning(false);  // Stop timer when it reaches 0
             setOnBreak(prev => !prev); // Switch between work/break
@@ -21,7 +19,7 @@ const TimeDisplay = ({sessionTime}) => {
         });
     }, 1000);
     return () => clearInterval(interval);
- }, [isRunning, onBreak]); 
+ }, [isRunning, onBreak, sessionTime, breakTime, timeLeft]); 
 
  const formatTime = () => {
     const minutes = String(Math.floor(timeLeft / 60)).padStart(2, '0');
@@ -30,14 +28,21 @@ const TimeDisplay = ({sessionTime}) => {
  };
 
 const handlePlayPause = () => {
-    setIsRunning(prev => !prev);
+    setIsRunning(prev => {
+        if (!prev && timeLeft === 1500) {
+            setTimeLeft(sessionTime);
+        }
+        return !prev;
+    });
 };
 
 const handleReset = () => {
-    setIsRunning(false);
-    setOnBreak(false);
-    setTimeLeft(sessionTime);
-    setBreakTime(breakTime);
+    setIsRunning(false); // stop the timer
+    setOnBreak(false); // break state resets
+    setBreakTime(300); // Reset break length to 5 minutes
+    setSessionTime(1500); // Reset session length to 25 minutes
+    setTimeLeft(1500); // Reset time-left to default session time
+
 }
 
  return (
