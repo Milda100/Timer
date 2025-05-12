@@ -2,9 +2,6 @@
 
 const Session = ({sessionTime, setSessionTime}) => {
 
-
-const Session = ({sessionTime, setSessionTime}) => {
-
     return (
         <>
             <label id="session-label" htmlFor="session-length">Session Time</label><br/>
