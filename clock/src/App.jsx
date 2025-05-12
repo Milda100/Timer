@@ -5,15 +5,20 @@ import TimeDisplay from './components/TimeDisplay'
 import Break from './components/Break'
 import Session from './components/Session'
 
-function App({breakTime, setBreakTime}) {
-
+function App() {
+const [sessionTime, setSessionTime] = useState(1500);
+const [breakTime, setBreakTime] = useState(300);
 
   return (
     <>
     <Container>
-    <Break breakTime={breakTime} setBreakTime={setBreakTime} />
-      <Session sessionTime={1500} />
-    <TimeDisplay sessionTime={1500} breakTime={breakTime}/>
+      <Break breakTime={breakTime} setBreakTime={setBreakTime} />
+      <Session sessionTime={sessionTime} setSessionTime={setSessionTime} />
+      <TimeDisplay 
+      sessionTime={sessionTime} 
+      setSessionTime={setSessionTime} 
+      breakTime={breakTime} 
+      setBreakTime={setBreakTime}/>
     </Container>
     </>
   )
