@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import beepSound from '../assets/audio/beepSound.mp3'
 
-const TimeDisplay = ({breakTime, setBreakTime, sessionTime, setSessionTime}) => {
+const TimeDisplay = ({breakTime, setBreakTime, sessionTime, setSessionTime, isRunning, setIsRunning}) => {
  const [timeLeft, setTimeLeft] = useState(sessionTime * 60);
- const [isRunning, setIsRunning] = useState(false);
  const [onBreak, setOnBreak] = useState(false);
 
  console.log("Initial sessionTime:", sessionTime);
@@ -21,6 +20,10 @@ console.log("Initial timeLeft:", timeLeft);
     }
 };
 
+useEffect(() => {
+    setTimeLeft(sessionTime * 60); // sessionTime matches timeLeft
+}, [sessionTime]);
+
  useEffect(() => {
     if (!isRunning) return;
 
@@ -29,7 +32,7 @@ console.log("Initial timeLeft:", timeLeft);
     }, 1000);
 
     return () => clearInterval(interval);
- }, [isRunning, timeLeft]); 
+ }, [isRunning, timeLeft]);
 
  useEffect(() => {
     if (timeLeft === 0) {
@@ -41,6 +44,8 @@ console.log("Initial timeLeft:", timeLeft);
             return newState;
         });
     }
+    console.log("Displayed time-left:", document.getElementById("time-left")?.innerText);
+
 }, [timeLeft]);
 
 
