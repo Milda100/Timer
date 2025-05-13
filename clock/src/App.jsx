@@ -6,8 +6,8 @@ import Break from './components/Break'
 import Session from './components/Session'
 
 function App() {
-const [sessionTime, setSessionTime] = useState(1500);
-const [breakTime, setBreakTime] = useState(300);
+const [sessionTime, setSessionTime] = useState(25);
+const [breakTime, setBreakTime] = useState(5);
 
   return (
     <>

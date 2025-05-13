@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import beepSound from '../assets/audio/beepSound.mp3'
 
 const TimeDisplay = ({breakTime, setBreakTime, sessionTime, setSessionTime}) => {
- const [timeLeft, setTimeLeft] = useState(1500);
+ const [timeLeft, setTimeLeft] = useState(sessionTime * 60);
  const [isRunning, setIsRunning] = useState(false);
  const [onBreak, setOnBreak] = useState(false);
+
+ console.log("Initial sessionTime:", sessionTime);
+console.log("Initial timeLeft:", timeLeft);
 
  const controlBeepSound = (action) => {
     const beepSound = document.getElementById("beep");
@@ -34,7 +37,7 @@ const TimeDisplay = ({breakTime, setBreakTime, sessionTime, setSessionTime}) => 
 
         setOnBreak(prev => {
             const newState = !prev;
-            setTimeLeft(newState ? breakTime : sessionTime); // ✅ Correctly sets next timer duration
+            setTimeLeft(newState ? breakTime * 60 : sessionTime * 60); // Correctly sets next timer duration
             return newState;
         });
     }
@@ -47,10 +50,12 @@ const TimeDisplay = ({breakTime, setBreakTime, sessionTime, setSessionTime}) => 
     return `${minutes}:${seconds}`;
  };
 
+ console.log("formatTime:", formatTime());
+
 const handlePlayPause = () => {
     setIsRunning(prev => {
-        if (!prev && timeLeft === 1500) { //Only set timeLeft when starting for the first time
-            setTimeLeft(sessionTime);
+        if (!prev && timeLeft === (25 * 60)) { //Only set timeLeft when starting for the first time
+            setTimeLeft(sessionTime * 60);
         }
         return !prev; //Toggle play/pause without resetting timeLeft
     });
@@ -59,9 +64,9 @@ const handlePlayPause = () => {
 const handleReset = () => {
     setIsRunning(false); // stop the timer
     setOnBreak(false); // break state resets
-    setBreakTime(300); // Reset break length to 5 minutes
-    setSessionTime(1500); // Reset session length to 25 minutes
-    setTimeLeft(1500); // Reset time-left to default session time
+    setBreakTime(5); // Reset break length to 5 minutes
+    setSessionTime(25); // Reset session length to 25 minutes
+    setTimeLeft(25 * 60); // Reset time-left to default session time
 
     controlBeepSound("stop");
 
