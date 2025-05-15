@@ -14,7 +14,7 @@ This repository contains **two branches**:
 - `main` – Original version using **React's local state** for state management.
 - `Redux` – Updated version with **Redux Toolkit** for global state management.
 
-> This README describes the **React-only** version in the `main` branch. For the Redux-enhanced version, see the [Redux branch](https://github.com/Milda100/Timer/tree/Redux).
+> This README describes the **React-only** version in the `main` branch. For the Redux-enhanced version, see the [Redux branch](https://github.com/Milda100/Timer/tree/redux?tab=readme-ov-file).
 
 ---
 
