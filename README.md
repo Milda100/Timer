@@ -7,6 +7,17 @@ A fully responsive **25 + 5 Pomodoro Clock** built with **React**, **Redux**, **
 
 ---
 
+## 🌿 Branches
+
+This repository contains **two branches**:
+
+- `main` – Original version using **React** for state management.
+- `Redux` – Updated version with **Redux Toolkit** for global state management.
+
+> This README describes the **Redux** version. For the original React-only implementation, see the [main branch](https://github.com/Milda100/Timer/tree/main).
+
+---
+
 ## 🎯 Features
 
 - Set **Break** and **Session** durations (1–60 minutes)
