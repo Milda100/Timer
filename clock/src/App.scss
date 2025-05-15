@@ -5,13 +5,33 @@ $deep-purple: #351c75;
 $rich-brown: #783f04;
 $dark-indigo: #20124d;
 
+$primary-font: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+//mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@mixin button-style($bg-color, $text-color, $radius: 8px, $margin: 6px) {
+  background: $bg-color;
+  color: $text-color;
+  padding: 10px 20px;
+  border: none;
+  border-radius: $radius !important;
+  margin: $margin !important;
+  cursor: pointer;
+}
+
+//SCSS
 #root {
   max-width: 1280px;
-  height: auto;
-  margin: 0 auto;
-  padding: 4rem;
-  text-align: center;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  height: 100vh;
+  @include flex-center();
+  margin: 0;
+  font-family: $primary-font;
   color: $dark-indigo;
   background-color: $warm-orange;
 }
@@ -21,21 +41,8 @@ $dark-indigo: #20124d;
   font-size: 4rem;
 }
 
-#break-label, #session-label {
-
-}
-
-
 button {
-    background: linear-gradient(45deg, $deep-purple, $soft-pink);
-    border: none;
-    border-radius: 8px !important;
-    padding: 5px 10px;
-    margin: 6px !important;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
+  @include button-style(linear-gradient(45deg, $deep-purple, $rich-brown), white);
     transition: transform 0.2s, box-shadow 0.3s;
 }
 
@@ -47,21 +54,3 @@ button:hover {
 button:active {
     transform: scale(0.95);
 }
-
-// button {
-//   border-radius: 10px !important;
-//   border: 2px solid transparent;
-//   font-size: 1em;
-//   font-weight: 500;
-//   font-family: inherit;
-//   background-color: #b7b7b7;
-//   cursor: pointer;
-//   transition: border-color 0.25s;
-// }
-// button:hover {
-//   border-color: #9da1e3;
-// }
-// button:focus,
-// button:focus-visible {
-//   outline: 4px auto -webkit-focus-ring-color;
-// }
